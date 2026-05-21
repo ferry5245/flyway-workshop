@@ -1,0 +1,102 @@
+databaseType = "Oracle"
+id = "90450bc3-5e7e-4117-8b10-414dc1de603b"
+name = "FIFGROUP_WORKSHOP"
+
+[flyway]
+callbackLocations = [ "filesystem:callbacks" ]
+locations = [ "filesystem:migrations" ]
+mixed = true
+outOfOrder = true
+schemaModelLocation = "schema-model"
+validateMigrationNaming = true
+baselineVersion = "001_20260521141149"
+baselineOnMigrate = true
+
+  [flyway.oracle]
+  sqlplus = true
+
+[flywayDesktop]
+enableMigrations = true
+developmentEnvironment = "development"
+shadowEnvironment = "shadow"
+
+  [flywayDesktop.generate]
+  undoScripts = true
+
+[redgateCompare]
+filterFile = "filter.rgf"
+
+  [redgateCompare.oracle]
+  ignoreRulesFile = "IgnoreRules.scpf"
+  filterFile = "Filter.scpf"
+
+[redgateCompare.oracle.options.behavior]
+forceColumnOrder = false
+useForwardSlash = false
+includeSetDefineOff = true
+includeSetBlankLinesOn = false
+includeSystemPermissions = false
+includeUserRoles = false
+includeProgramUnitRoles = false
+includeCrossSchemaPermissions = true
+excludeSchemaNames = false
+detectRenamedColumns = true
+addPurgeClauseToAllTableDrops = false
+suppressDependentAlterCompile = false
+includeSetDefineOffToScripter = true
+
+[redgateCompare.oracle.options.ignores]
+ignoreSlowDependencies = true
+ignoreDependentObjectsInOtherSchemas = true
+ignoreWhitespace = true
+ignoreCaseDifferencesInPlSqlBlocks = false
+ignoreDoubleQuotesInPlSqlBlocks = true
+ignoreExternalTableLocationInformation = false
+ignoreCommentsInPlSqlBlocks = false
+ignoreCommentsOnTablesViewsAndColumns = false
+ignoreConstraintNames = false
+ignoreIndexNames = false
+ignoreLobStorage = false
+ignoreParallel = false
+ignoreSequenceCurrentValue = true
+ignorePermissions = true
+ignoreSupplementalLogGroups = false
+ignoreMaterializedViewStartWithValue = true
+ignoreLengthSemantics = false
+ignoreSystemPartitions = false
+
+[redgateCompare.oracle.options.storage]
+includeAllStorage = false
+includeStorageCompression = false
+includeStorageDeferredSegments = false
+includeStorageExtents = false
+includeStorageIlmPolicies = false
+includeStorageIniTrans = false
+includeStorageLobsAndVarrays = false
+includeStorageLogging = false
+includeStoragePartitioning = false
+includeStoragePctFree = false
+includeStorageTablespace = false
+
+[redgateCompare.oracle.data.options.comparison]
+checkTablesForData = false
+includeViews = false
+trimTrailingSpaces = false
+ignoreControlCharacters = false
+ignoreWhiteSpace = false
+includeSourceTables = true
+ignoreDateTypeDifferences = false
+
+[environments.target1]
+url = "jdbc:oracle:thin:@//34.128.115.186:1521/PROD"
+schemas = [ "FEY" ]
+
+[environments.target2]
+url = "jdbc:oracle:thin:@//34.128.115.186:1521/PROD"
+schemas = [ "FEY" ]
+displayName = "Production Database"
+
+[environments.target3]
+url = "jdbc:oracle:thin:@//34.128.115.186:1521/TEST"
+schemas = [ "FEY" ]
+displayName = "Test Database"
